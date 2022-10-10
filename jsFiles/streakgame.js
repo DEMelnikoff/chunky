@@ -22,7 +22,7 @@ var streakGame = (function() {
            debug: jsPsych.data.getURLVariable('debug'),
        });
        if (debug = true) {
-           settings = {nTrials= 2};
+           var settings = {nTrials: 2};
        }
 
     // create text variables for instructions
