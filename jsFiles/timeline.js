@@ -4,10 +4,11 @@ jsPsych.data.addProperties({
     PROLIFIC_PID: jsPsych.data.getURLVariable('subject'),
 });
 
-// if no PROLIFIC_PID produced, define as 9999
-if( PROLIFIC_PID ) {
-    else
-        PROLIFIC_PID: 9999
+// if no PROLIFIC_PID produced, define as 9999   
+if (PROLIFIC_PID) {
+  // if defined, do nothing
+} else {
+  PROLIFIC_PID: 9999 //  define 
 }
 
 function MakeTimeline(game) {
