@@ -16,7 +16,7 @@ var streakGame = (function() {
     };
     
     // debug mode (find debugging status from URL)
-       var urlParams = parseURLParams(window.location.href);
+    
        var debug = false;
        jsPsych.data.addProperties({
            debug: jsPsych.data.getURLVariable('debug'),
