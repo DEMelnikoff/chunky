@@ -4,8 +4,8 @@ jsPsych.data.addProperties({
     PROLIFIC_PID: jsPsych.data.getURLVariable('subject'),
 });
 
-// if no PROLIFIC_PID produced, define as 9999   
-if (PROLIFIC_PID) {
+// if no PROLIFIC_PID, define as 9999   
+if (typeof PROLIFIC_PID !== 'undefined') {
   // if defined, do nothing
 } else {
   PROLIFIC_PID: 9999 //  define 
