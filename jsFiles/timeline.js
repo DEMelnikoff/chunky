@@ -1,15 +1,17 @@
+// Get ID from URL
+PROLIFIC_PID = jsPsych.data.getURLVariable('subject')
+
+// if no PROLIFIC_PID in URL, define as 9999 (so data will write)
+if (typeof PROLIFIC_PID !== 'undefined') {
+} else {
+  PROLIFIC_PID = 9999 //  define 
+}
 
 jsPsych.data.addProperties({
     date: new Date(),
-    PROLIFIC_PID: jsPsych.data.getURLVariable('subject'),
+    PROLIFIC_PID: PROLIFIC_PID,
 });
 
-// if no PROLIFIC_PID, define as 9999   
-if (typeof PROLIFIC_PID !== 'undefined') {
-  // if defined, do nothing
-} else {
-  PROLIFIC_PID: 9999 //  define 
-}
 
 function MakeTimeline(game) {
     this.timeline = [
