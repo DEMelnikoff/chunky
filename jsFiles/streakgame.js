@@ -17,20 +17,20 @@ var streakGame = (function() {
     
     // debug mode (find debugging status from URL)
     
-       var debug = false;
-       jsPsych.data.addProperties({
-           debug: jsPsych.data.getURLVariable('debug'),
-       });
-       if (debug = true) {
-               var settings = {
-                colorOrder: Math.floor(Math.random()*2),
-                pM: Array('easy', 'hard')[Math.floor(Math.random()*2)],
-                pEM: [10, 10],
-                gameTypeOrder: Math.floor(Math.random()*2),
-                val: 3,
-                nTrials: 2
-        };
-       }
+//        var debug = false;
+//        jsPsych.data.addProperties({
+//            debug: jsPsych.data.getURLVariable('debug'),
+//        });
+//        if (debug = true) {
+//                var settings = {
+//                 colorOrder: Math.floor(Math.random()*2),
+//                 pM: Array('easy', 'hard')[Math.floor(Math.random()*2)],
+//                 pEM: [10, 10],
+//                 gameTypeOrder: Math.floor(Math.random()*2),
+//                 val: 3,
+//                 nTrials: 2
+//         };
+//        }
 
     // create text variables for instructions
     
