@@ -1,3 +1,4 @@
+/*
 // Get ID from URL
 PROLIFIC_PID = jsPsych.data.getURLVariable('subject')
 
@@ -6,10 +7,11 @@ if (typeof PROLIFIC_PID !== 'undefined') {
 } else {
   PROLIFIC_PID = 9999 //  define 
 }
+*/
 
 jsPsych.data.addProperties({
     date: new Date(),
-    PROLIFIC_PID: PROLIFIC_PID,
+    subjectID: Math.floor(Math.random() * 10000),
 });
 
 
@@ -47,7 +49,7 @@ jsPsych.init({
        firebase.database().ref(firebase.auth().currentUser.uid).set({
            data: jsPsych.data.get().values()
         });
-        document.body.innerHTML = '<p><p><p align="center">Thank you for participating in the study!<p align="center"><b>You will be automatically re-directed to Prolific in a few moments.</b></p>';
-        setTimeout(function () { location.href = "https://app.prolific.co/submissions/complete?cc=865BE374" }, 5000);
+        document.body.innerHTML = '<p><p><p align="center">Thank you for participating!<p align="center"></p>';
+        // setTimeout(function () { location.href = "https://app.prolific.co/submissions/complete?cc=865BE374" }, 5000);
    }
 });
