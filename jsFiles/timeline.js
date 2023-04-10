@@ -49,7 +49,7 @@ jsPsych.init({
        firebase.database().ref(firebase.auth().currentUser.uid).set({
            data: jsPsych.data.get().values()
        });
-        // document.body.innerHTML = '<p><p><p align="center">Thank you for participating!<p align="center"></p>';
-        setTimeout(function () { location.href = "www.google.com" }, 5000);
+       document.body.innerHTML = '<p><p><p align="center">Thank you for participating!<p align="center"></p>';
+       // setTimeout(function () { location.href = "http://www.google.com" }, 5000);
    }
 });
