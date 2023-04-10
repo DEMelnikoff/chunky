@@ -9,11 +9,6 @@ if (typeof PROLIFIC_PID !== 'undefined') {
 }
 */
 
-jsPsych.data.addProperties({
-    date: new Date(),
-    subjectID: Math.floor(Math.random() * 10000),
-});
-
 
 function MakeTimeline(game) {
     this.timeline = [
