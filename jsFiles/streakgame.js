@@ -66,9 +66,11 @@ var streakGame = (function() {
     // save condition and URL data
     jsPsych.data.addProperties({
         pM: settings.pM,
-        pEM: settings.pEM,
+        // pEM: settings.pEM,
         colorOrder: settings.colorOrder,
-        gameTypeOrder: settings.gameTypeOrder,
+        chunkSecond: settings.gameTypeOrder,
+        date: new Date(),
+        subjectID: Math.floor(Math.random() * 10000),
     });
 
    /*
