@@ -11,7 +11,7 @@ var streakGame = (function() {
         pM: Array(.5, .13)[Math.floor(Math.random()*2)],
         pEM: [10, 10],
         gameTypeOrder: Math.floor(Math.random()*2),
-        val: 15,
+        val: 10,
         nTrials: 62,
     };
     
