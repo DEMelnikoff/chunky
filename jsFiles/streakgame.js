@@ -520,6 +520,7 @@ var streakGame = (function() {
         this.trial_duration = 2000;
         this.on_finish = function(data) {
             trialNumber++;
+            console.log(trialNumber);
             if (trialNumber == settings.nTrials) {
                 trialNumber = 0;
                 hits = 0;
@@ -716,6 +717,7 @@ var streakGame = (function() {
                 totalJackpotsR1 = jsPsych.data.get().filter({Trial_Type: 'feedback_R1', Jackpot: true}).count();
                 totalJackpotsR2 = jsPsych.data.get().filter({Trial_Type: 'feedback_R2', Jackpot: true}).count();
                 totalJackpots = totalJackpotsR1 + totalJackpotsR2;
+                data.totalJackpots = totalJackpots;
             },
         }; 
         var email = {
