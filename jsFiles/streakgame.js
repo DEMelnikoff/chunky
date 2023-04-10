@@ -8,11 +8,11 @@ var streakGame = (function() {
     // randomly assign to conditions
     var settings = {
         colorOrder: Math.floor(Math.random()*2),
-        pM: Array('easy', 'hard')[Math.floor(Math.random()*2)],
+        pM: Array(.5, .13)[Math.floor(Math.random()*2)],
         pEM: [10, 10],
         gameTypeOrder: Math.floor(Math.random()*2),
-        val: 3,
-        nTrials: 50
+        val: 15,
+        nTrials: 62
     };
     
     // debug mode (find debugging status from URL)
@@ -291,7 +291,7 @@ var streakGame = (function() {
         var attnChk1Prompt = `The <span class='${span}'>${game}</span> is played in multiple rounds, and you have five chances to activate a tile per round.`
         var attnChk1Name = `attnChk1_${round}`
         var attnChk2Ans = `${text.value} cent${text.plural}`;
-        var attnChk2Scale = ["0 cents", "1 cent", "2 cents", "3 cents", "4 cents", "5 cents"];
+        var attnChk2Scale = ["0 cents", "1 cent", "2 cents", "5 cents", "10 cents", "15 cents"];
         var attnChk2Name = `attnChk2_${round}`;
         if (round == 'R1') {
             var attnChk1Ans = settings.gameTypeOrder == 0 ? `True` : `False`
@@ -454,7 +454,8 @@ var streakGame = (function() {
     };
 
     function MakeLatencyArrays() {
-        settings.pM == 'easy' ? (this.R1 = easyArray(), this.R2 = easyArray()) : (this.R1 = hardArray(), this.R2 = hardArray());
+        this.R1 = makeRT(settings.nTrials, settings.pM);
+        this.R2 = makeRT(settings.nTrials, settings.pM);
     };
 
     function MakeProbe(round) {
@@ -718,16 +719,17 @@ var streakGame = (function() {
             },
         }; 
         var email = {
-            type: 'survey-text',
-            questions: [{prompt: "", placeholder: "Prolific ID", name: "PID", columns: 50, required: true}],
-            button_label: ['CLICK HERE TO FINISH'], 
-            preamble: function() {
+            type: "instructions",
+            pages: function() {
                 var totalCents = totalJackpots * settings.val;
-                return `<p>Thank you for participating!</p><p>In total, you won <b>${totalCents} cents</b> in bonus money!
-                <br>Within one week, you will receive your bonus money. Your $1.50 for participating will be delivered immediately.</p>
-                <p>To receive payment, enter your Prolific ID in the space below.</p>`
+                var text = `<p>Thank you for participating!</p><p>In total, you won <b>${totalCents} cents</b> in bonus money!
+                <br>To receive your earnings, please give the following code to the administrator: <b>DM${totalCents*2}</b>.</p>`;
+                return [text];
             },
+            show_clickable_nav: true,
+            post_trial_gap: 500,
         };
+
         var demos = {
             timeline: [gender, age, ethnicity, english, finalWord, email]
         };
