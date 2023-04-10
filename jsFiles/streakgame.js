@@ -12,7 +12,7 @@ var streakGame = (function() {
         pEM: [10, 10],
         gameTypeOrder: Math.floor(Math.random()*2),
         val: 15,
-        nTrials: 10
+        nTrials: 62,
     };
     
     // debug mode (find debugging status from URL)
@@ -73,8 +73,7 @@ var streakGame = (function() {
         // pEM: settings.pEM,
         colorOrder: settings.colorOrder,
         chunkSecond: settings.gameTypeOrder,
-        startTimeObj: dateObj,
-        startTimeStrng: dateStrng,
+        startTime: dateStrng,
         subjectID: Math.floor(Math.random() * 10000),
     });
 
