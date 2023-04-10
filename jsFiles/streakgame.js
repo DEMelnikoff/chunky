@@ -12,7 +12,7 @@ var streakGame = (function() {
         pEM: [10, 10],
         gameTypeOrder: Math.floor(Math.random()*2),
         val: 15,
-        nTrials: 62
+        nTrials: 10
     };
     
     // debug mode (find debugging status from URL)
@@ -348,22 +348,45 @@ var streakGame = (function() {
         };
     };
 
+    // consent form
+
+    const consent = `
+    <div class='parent'>
+    <p><b>Adult Consent for Participation in a Research Project<br>
+    200 FR 2 (2017-1)</b><br>
+    Study Title: Choices, decisions, and pursuits<br>
+    Investigator: Paul Stillman<br>
+    HSC #: 2000023892</p>
+
+    <p><b>Purpose:</b><br>
+    You are invited to participate in a research study designed to examine judgment and decision-making.</p>
+
+    <p><b>Procedures:</b><br>
+    If you agree to take part, your participation in this study will involve answering a series of questions as well as making choices between different options that will be presented to you as part of study activities. We anticipate that your involvement will require 12-15 minutes.</p>
+
+    <p><b>Compensation:</b><br>
+    You will receive $XXX in exchange for your participation at the Yale SOM Lab.</p>
+
+    <p><b>Risks and Benefits:</b><br>
+    There are no known or anticipated risks associated with this study. Although this study will not benefit you personally, we hope that our results will add to the knowledge about judgment and decision-making.</p>
+
+    <p><b>Confidentiality:</b><br>
+    All of your responses will be anonymous.  Only the researchers involved in this study and those responsible for research oversight will have access to any information that could identify you/that you provide. The researcher will not know your name, and no identifying information will be connected to your survey answers in any way. The survey is therefore anonymous.</p>
+
+    <p><b>Voluntary Participation:</b><br>
+    Your participation in this study is voluntary. You are free to decline to participate, to end your participation at any time for any reason, or to refuse to answer any individual question without penalty.</p>
+
+    <p><b>Questions:</b><br>
+    If you have any questions about this study, you may contact the principal investigator, Paul Stillman, (paul.stillman@yale.edu). If you would like to talk with someone other than the researchers to discuss problems or concerns, to discuss situations in the event that a member of the research team is not available, or to discuss your rights as a research participant, you may contact the Yale University Human Subjects Committee, 203-785-4688, human.subjects@yale.edu. Additional information is available at http://your.yale.edu/research-support/human-research/research-participants</p>`
 
     // create instruction variables
     p.intro.preMessage = {
         type: 'survey-multi-choice',
-        preamble: `<div style='text-align: left; width: 950px'>
-            <p>Welcome! Before you begin this survey, please note the following:</p>
-            <p>Unlike some surveys on Prolific, we NEVER deny payment based on performance
-            or answers to questions. We simply ask that you try your best, and answer 
-            each question as honestly and accurately as possible. No matter what answers you give or how
-            you perform, you will be fully compensated. That is a guarantee.</p>
-            <p>To ensure that you understand this information, please answer the following question.</p>
-            </div>`,
+        preamble: consent,
         questions: [
-            {prompt: `Will you receive full payment regardless of how you perform and answer questions?`,
-            name: `preMessageChk`, 
-            options: [`Yes`, `No`]}
+            {prompt: `Would you like to continue to the study? Press the “continue” button to indicate that you consent to participate in the study.`,
+            name: `consent`, 
+            options: [`Continue`]}
         ],
         scale_width: 500,
     };
