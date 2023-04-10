@@ -297,7 +297,7 @@ var streakGame = (function() {
         var attnChk1Prompt = `The <span class='${span}'>${game}</span> is played in multiple rounds, and you have five chances to activate a tile per round.`
         var attnChk1Name = `attnChk1_${round}`
         var attnChk2Ans = `${text.value} cent${text.plural}`;
-        var attnChk2Scale = ["0 cents", "1 cent", "2 cents", "5 cents", "10 cents", "15 cents"];
+        var attnChk2Scale = ["0 cents", "1 cent", "2 cents", "5 cents", "8 cents", "10 cents"];
         var attnChk2Name = `attnChk2_${round}`;
         if (round == 'R1') {
             var attnChk1Ans = settings.gameTypeOrder == 0 ? `True` : `False`
