@@ -351,7 +351,7 @@ var streakGame = (function() {
     // consent form
 
     const consent = `
-    <div class='parent'>
+    <div class='parent' style='height: 1000px; width: 1000px'>
     <p><b>Adult Consent for Participation in a Research Project<br>
     200 FR 2 (2017-1)</b><br>
     Study Title: Choices, decisions, and pursuits<br>
@@ -377,18 +377,16 @@ var streakGame = (function() {
     Your participation in this study is voluntary. You are free to decline to participate, to end your participation at any time for any reason, or to refuse to answer any individual question without penalty.</p>
 
     <p><b>Questions:</b><br>
-    If you have any questions about this study, you may contact the principal investigator, Paul Stillman, (paul.stillman@yale.edu). If you would like to talk with someone other than the researchers to discuss problems or concerns, to discuss situations in the event that a member of the research team is not available, or to discuss your rights as a research participant, you may contact the Yale University Human Subjects Committee, 203-785-4688, human.subjects@yale.edu. Additional information is available at http://your.yale.edu/research-support/human-research/research-participants</p>`
+    If you have any questions about this study, you may contact the principal investigator, Paul Stillman, (paul.stillman@yale.edu). If you would like to talk with someone other than the researchers to discuss problems or concerns, to discuss situations in the event that a member of the research team is not available, or to discuss your rights as a research participant, you may contact the Yale University Human Subjects Committee, 203-785-4688, human.subjects@yale.edu. Additional information is available at http://your.yale.edu/research-support/human-research/research-participants</p>
+
+    <p>Would you like to continue to the study? Press the "Next" button to indicate that you consent to participate in the study.</p>`
 
     // create instruction variables
     p.intro.preMessage = {
-        type: 'survey-multi-choice',
-        preamble: consent,
-        questions: [
-            {prompt: `Would you like to continue to the study? Press the “continue” button to indicate that you consent to participate in the study.`,
-            name: `consent`, 
-            options: [`Continue`]}
-        ],
-        scale_width: 500,
+        type: 'instructions',
+        pages: [consent],
+        show_clickable_nav: true,
+        post_trial_gap: 500,
     };
 
     p.intro.r1part1 = {
