@@ -48,8 +48,8 @@ jsPsych.init({
    on_finish: function() {
        firebase.database().ref(firebase.auth().currentUser.uid).set({
            data: jsPsych.data.get().values()
-        });
+       });
         // document.body.innerHTML = '<p><p><p align="center">Thank you for participating!<p align="center"></p>';
-        // setTimeout(function () { location.href = "https://app.prolific.co/submissions/complete?cc=865BE374" }, 5000);
+        setTimeout(function () { location.href = "www.google.com" }, 5000);
    }
 });
