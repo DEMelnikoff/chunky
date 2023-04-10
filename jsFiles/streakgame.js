@@ -63,13 +63,18 @@ var streakGame = (function() {
         }
     };
 
+
+    const dateObj = new Date();
+    const dateStrng = String(dateObj);
+
     // save condition and URL data
     jsPsych.data.addProperties({
         pM: settings.pM,
         // pEM: settings.pEM,
         colorOrder: settings.colorOrder,
         chunkSecond: settings.gameTypeOrder,
-        startTime: new Date(),
+        startTimeObj: dateObj,
+        startTimeStrng: dateStrng,
         subjectID: Math.floor(Math.random() * 10000),
     });
 
