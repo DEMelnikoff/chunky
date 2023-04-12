@@ -13,6 +13,7 @@ var streakGame = (function() {
         gameTypeOrder: Math.floor(Math.random()*2),
         val: 10,
         nTrials: 62,
+        basePay: 10,
     };
     
     // debug mode (find debugging status from URL)
@@ -70,6 +71,8 @@ var streakGame = (function() {
     // save condition and URL data
     jsPsych.data.addProperties({
         pM: settings.pM,
+        val: settings.val,
+        basePay: settings.basePay,
         // pEM: settings.pEM,
         colorOrder: settings.colorOrder,
         chunkSecond: settings.gameTypeOrder,
@@ -111,7 +114,7 @@ var streakGame = (function() {
                 <p>The goal of the <span class='${text.span1}'>${text.game1}</span> is to win as much money as possible.</p>
                 <p>All of the money you win during the <span class='${text.span1}'>${text.game1}</span> will be added to
                 a "bonus fund,"<br>which you'll receive at the end of the study.</p>
-                <p>Your total payment will be $1.50 for your participation, plus all of the money in your bonus fund.</p>
+                <p>Your total payment will be $${settings.basePay} for your participation, plus all of the money in your bonus fund.</p>
                 </div>`],
 
                 part2Chunk: [`<div class='parent'>
@@ -371,7 +374,7 @@ var streakGame = (function() {
     If you agree to take part, your participation in this study will involve answering a series of questions as well as making choices between different options that will be presented to you as part of study activities. We anticipate that your involvement will require 12-15 minutes.</p>
 
     <p><b>Compensation:</b><br>
-    You will receive $XXX in exchange for your participation at the Yale SOM Lab.</p>
+    You will receive $${settings.basePay} in exchange for your participation at the Yale SOM Lab.</p>
 
     <p><b>Risks and Benefits:</b><br>
     There are no known or anticipated risks associated with this study. Although this study will not benefit you personally, we hope that our results will add to the knowledge about judgment and decision-making.</p>
@@ -750,9 +753,10 @@ var streakGame = (function() {
         var email = {
             type: "instructions",
             pages: function() {
-                var totalCents = totalJackpots * settings.val;
-                var text = `<p>Thank you for participating!</p><p>In total, you won <b>${totalCents} cents</b> in bonus money!
-                <br>To receive your earnings, please give the following code to the administrator: <b>DM${totalCents*2}</b>.</p>`;
+                var bonusDollars = Math.ceil( (totalJackpots * settings.val) / 100);
+                var totalDollars = bonusDollars + 10
+                var text = `<p>Thank you for participating!</p><p>In total, you won <b>${bonusDollars} cents</b> in bonus money!
+                <br>To receive your earnings, please give the following code to the administrator: <b>DM${totalDollars*2}</b>.</p>`;
                 return [text];
             },
             show_clickable_nav: true,
@@ -760,7 +764,7 @@ var streakGame = (function() {
         };
 
         var demos = {
-            timeline: [gender, age, ethnicity, english, finalWord, email]
+            timeline: [gender, age, ethnicity, english, finalWord]
         };
 
         return demos;
