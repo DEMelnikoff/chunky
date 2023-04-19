@@ -498,7 +498,6 @@ var streakGame = (function() {
         };
         this.on_finish = function(data){
             data.key_press == 32 ? data.TooSlow = 0 : data.TooSlow = 1;
-            console.log(latency[round]);
         };
     };
 
@@ -550,7 +549,6 @@ var streakGame = (function() {
         this.trial_duration = 2000;
         this.on_finish = function(data) {
             trialNumber++;
-            console.log(trialNumber);
             if (trialNumber == settings.nTrials) {
                 trialNumber = 0;
                 hits = 0;
@@ -618,6 +616,28 @@ var streakGame = (function() {
         roundIntroR1 = new MakeRoundIntro('R1'),
         roundIntroR2 = new MakeRoundIntro('R2')
 
+    const delayLoopR1 = {
+        timeline:[delayR1, tooFastR1],
+        loop_function: function(data) {
+            let tooFastArray = jsPsych.data.get().select('TooFast').values;
+            let loop = tooFastArray[tooFastArray.length - 1];
+            console.log(tooFastArray, loop);
+            if (loop) { return true }
+            return false
+        }
+    }
+
+    const delayLoopR2 = {
+        timeline:[delayR2, tooFastR2],
+        loop_function: function(data) {
+            let tooFastArray = jsPsych.data.get().select('TooFast').values;
+            let loop = tooFastArray[tooFastArray.length - 1];
+            console.log(tooFastArray, loop);
+            if (loop) { return true }
+            return false
+        }
+    }
+
     p.task.round1Intro = {
         timeline: [roundIntroR1],
     };
@@ -627,12 +647,12 @@ var streakGame = (function() {
     };
 
     p.task.round1 = {
-        timeline: [delayR1, tooFastR1, probeR1, responseR1, feedbackR1],
+        timeline: [delayLoopR1, probeR1, responseR1, feedbackR1],
         repetitions: settings.nTrials,
     };
 
     p.task.round2 = {
-        timeline: [delayR2, tooFastR2, probeR2, responseR2, feedbackR2],
+        timeline: [delayLoopR2, probeR2, responseR2, feedbackR2],
         repetitions: settings.nTrials,
     };
 
